@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102923">
+  <title>MAAL | The Next Best Test</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #102923;
+      --deep: #0b1e1a;
+      --card: #193b32;
+      --mint: #76dfc3;
+      --cream: #f7f3e9;
+      --muted: #b9cec3;
+      --gold: #dfc18a;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--cream);
+      background: var(--bg);
+      font-family: "DM Sans", "IBM Plex Sans Arabic", sans-serif;
+      overflow-x: hidden;
+    }
+
+    body.ar {
+      font-family: "IBM Plex Sans Arabic", "DM Sans", sans-serif;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    .page {
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 78% 39%, rgba(63, 172, 137, .20), transparent 34%),
+        radial-gradient(circle at 8% 85%, rgba(41, 115, 91, .18), transparent 35%),
+        var(--bg);
+    }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: .12;
+      background-image:
+        linear-gradient(#b2d9c6 1px, transparent 1px),
+        linear-gradient(90deg, #b2d9c6 1px, transparent 1px);
+      background-size: 72px 72px;
+    }
+
+    .container {
+      width: min(1160px, calc(100% - 44px));
+      margin: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      min-height: 104px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 1px solid rgba(255,255,255,.13);
+    }
+
+    .brand, .header-right {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo-box {
+      width: 70px;
+      height: 70px;
+      display: grid;
+      place-items: center;
+      border-radius: 17px;
+      background: var(--cream);
+    }
+
+    .logo-box img {
+      width: 59px;
+      height: 59px;
+      object-fit: contain;
+    }
+
+    .brand-name {
+      color: var(--mint);
+      font-weight: 700;
+      letter-spacing: .18em;
+    }
+
+    .brand-sub {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .saif-logo {
+      width: 105px;
+      max-height: 55px;
+      object-fit: contain;
+    }
+
+    #langButton {
+      border: 1px solid rgba(118,223,195,.5);
+      border-radius: 40px;
+      padding: 11px 17px;
+      color: white;
+      background: rgba(118,223,195,.08);
+      cursor: pointer;
+      font: inherit;
+      transition: .25s;
+    }
+
+    #langButton:hover {
+      background: rgba(118,223,195,.2);
+      transform: translateY(-2px);
+    }
+
+    .hero {
+      min-height: 630px;
+      display: grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 40px;
+      align-items: center;
+      padding: 60px 0 76px;
+    }
+
+    .eyebrow {
+      color: var(--mint);
+      letter-spacing: .15em;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .eyebrow::before {
+      content: "";
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      margin-inline-end: 10px;
+      border-radius: 50%;
+      background: var(--mint);
+      box-shadow: 0 0 15px var(--mint);
+    }
+
+    h1 {
+      font-size: clamp(44px, 5.5vw, 78px);
+      font-weight: 600;
+      line-height: 1.12;
+      letter-spacing: -.055em;
+      margin: 25px 0;
+    }
+
+    .ar h1 {
+      letter-spacing: 0;
+      line-height: 1.4;
+      font-size: clamp(39px, 5vw, 67px);
+    }
+
+    h1 span { color: var(--mint); }
+
+    .description {
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.9;
+      max-width: 575px;
+      margin-bottom: 34px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button {
+      min-height: 57px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 23px;
+      border-radius: 40px;
+      font-weight: 700;
+      transition: transform .25s, box-shadow .25s, background .25s;
+    }
+
+    .button:hover { transform: translateY(-4px); }
+
+    .primary {
+      color: #09271f;
+      background: var(--mint);
+      box-shadow: 0 12px 32px rgba(100,235,190,.18);
+    }
+
+    .primary:hover { box-shadow: 0 15px 40px rgba(100,235,190,.35); }
+
+    .secondary {
+      border: 1px solid rgba(235,255,242,.45);
+      background: rgba(255,255,255,.04);
+    }
+
+    .secondary:hover { background: rgba(255,255,255,.12); }
+
+    .small-note {
+      margin-top: 23px;
+      color: #a9c2b6;
+      font-size: 12px;
+    }
+
+    /* Animated visual: incomplete data becomes the next test */
+    .visual {
+      height: 480px;
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+
+    .glow {
+      width: 410px;
+      height: 410px;
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(76,211,164,.25), transparent 65%);
+      filter: blur(13px);
+    }
+
+    .ring {
+      width: 410px;
+      height: 410px;
+      position: relative;
+      border: 1px solid rgba(158,234,201,.29);
+      border-radius: 50%;
+      box-shadow: inset 0 0 55px rgba(107,224,180,.05);
+    }
+
+    .ring::before, .ring::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      inset: 48px;
+      border: 1px dashed rgba(158,234,201,.28);
+      animation: rotate 55s linear infinite;
+    }
+
+    .ring::after {
+      inset: 110px;
+      border-style: solid;
+      opacity: .65;
+      animation-direction: reverse;
+    }
+
+    .center {
+      position: absolute;
+      width: 125px;
+      height: 125px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #245547;
+      border: 1px solid var(--mint);
+      box-shadow: 0 0 0 15px rgba(118,223,195,.06),
+                  0 0 55px rgba(118,223,195,.35);
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    .center img {
+      width: 92px;
+      height: 92px;
+      object-fit: contain;
+    }
+
+    .chip {
+      position: absolute;
+      min-width: 148px;
+      padding: 13px 17px;
+      border: 1px solid rgba(118,223,195,.35);
+      border-radius: 17px;
+      background: rgba(20,55,44,.95);
+      box-shadow: 0 14px 30px rgba(0,0,0,.25);
+    }
+
+    .chip small {
+      display: block;
+      color: var(--gold);
+      letter-spacing: .1em;
+      font-size: 10px;
+      margin-bottom: 4px;
+    }
+
+    .chip strong { font-size: 15px; }
+
+    .chip.one { top: 14%; left: -7%; }
+    .chip.two { top: 54%; left: -12%; }
+    .chip.three {
+      right: -7%;
+      bottom: 12%;
+      border-color: var(--mint);
+      background: #24614e;
+    }
+
+    .chip.three strong { color: #b6ffe0; }
+
+    .dot {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: var(--mint);
+      border-radius: 50%;
+      box-shadow: 0 0 18px var(--mint);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .dot.a { top: 17%; right: 25%; }
+    .dot.b { bottom: 21%; left: 21%; animation-delay: 1s; }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      padding: 28px 0;
+      border-top: 1px solid rgba(255,255,255,.16);
+      border-bottom: 1px solid rgba(255,255,255,.16);
+    }
+
+    .stat:not(:last-child) { border-inline-end: 1px solid rgba(255,255,255,.16); }
+
+    .stat strong {
+      display: block;
+      color: var(--mint);
+      font-size: 29px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .section {
+      padding: 88px 0 62px;
+    }
+
+    .label {
+      color: var(--mint);
+      font-size: 12px;
+      letter-spacing: .16em;
+      font-weight: 700;
+    }
+
+    h2 {
+      margin: 12px 0 34px;
+      font-size: clamp(30px, 4vw, 48px);
+      font-weight: 600;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .card {
+      min-height: 175px;
+      padding: 24px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: linear-gradient(135deg, #224c3d, #153229);
+      transition: .3s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: var(--mint);
+    }
+
+    .card b { color: var(--gold); font-size: 12px; }
+    .card h3 { margin: 24px 0 7px; font-size: 21px; }
+    .card p { margin: 0; color: var(--muted); line-height: 1.7; font-size: 14px; }
+
+    .disclaimer {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+      margin: 38px 0 0;
+      max-width: 750px;
+    }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,.16);
+      padding: 25px 0 35px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    footer a { text-decoration: underline; text-underline-offset: 4px; }
+
+    .country {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+
+    .country img {
+      width: 34px;
+      height: 25px;
+      object-fit: contain;
+    }
+
+    @keyframes rotate { to { transform: rotate(360deg); } }
+    @keyframes pulse {
+      50% { box-shadow: 0 0 0 25px rgba(118,223,195,.02),
+                         0 0 80px rgba(118,223,195,.4); }
+    }
+    @keyframes float { 50% { transform: translateY(-15px); } }
+
+    @media (max-width: 850px) {
+      .hero { grid-template-columns: 1fr; padding-top: 25px; }
+      .visual { order: -1; height: 375px; }
+      .ring { width: 330px; height: 330px; }
+    }
+
+    @media (max-width: 600px) {
+      header { min-height: 86px; }
+      .logo-box { width: 54px; height: 54px; }
+      .logo-box img { width: 46px; height: 46px; }
+      .brand-sub { font-size: 10px; }
+      .saif-logo { width: 65px; }
+      #langButton { padding: 8px 10px; font-size: 12px; }
+      .hero { padding-bottom: 55px; }
+      .visual { height: 305px; }
+      .ring { width: 260px; height: 260px; }
+      .ring::before { inset: 32px; }
+      .ring::after { inset: 78px; }
+      .center { width: 92px; height: 92px; }
+      .center img { width: 68px; height: 68px; }
+      .chip { min-width: 110px; padding: 8px; }
+      .chip strong { font-size: 11px; }
+      .chip small { font-size: 8px; }
+      .chip.one { left: -11%; }
+      .chip.two { left: -15%; }
+      .chip.three { right: -12%; }
+      .description { font-size: 16px; }
+      .buttons { display: grid; grid-template-columns: 1fr; }
+      .stats { gap: 8px; }
+      .stat strong { font-size: 19px; }
+      .stat span { font-size: 10px; }
+      .cards { grid-template-columns: 1fr; }
+      .card { min-height: auto; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header class="container">
+      <div class="brand">
+        <div class="logo-box">
+          <img src="Maal_logo.png" alt="MAAL logo">
+        </div>
+        <div>
+          <div class="brand-name">MAAL</div>
+          <div class="brand-sub"
+               data-en="From data to what matters next"
+               data-ar="من البيانات إلى الخطوة التالية">
+            From data to what matters next
+          </div>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <img class="saif-logo" src="saiff%20logo.png" alt="SAIF logo">
+        <button id="langButton" type="button">العربية ↗</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero container">
+        <div>
+          <div class="eyebrow"
+               data-en="SAIF 2026 · PROOF OF CONCEPT"
+               data-ar="سيف ٢٠٢٦ · نموذج أولي">
+            SAIF 2026 · PROOF OF CONCEPT
+          </div>
+
+          <h1>
+            <span style="color:var(--cream)"
+                  data-en="For every gap in the data,"
+                  data-ar="لكل فجوة في البيانات…">
+              For every gap in the data,
+            </span>
+            <br>
+            <span data-en="a next step worth taking."
+                  data-ar="خطوة تستحق أن تبدأ بها.">
+              a next step worth taking.
+            </span>
+          </h1>
+
+          <p class="description"
+             data-en="MAAL recommends the next water-quality analysis when information is incomplete, then updates its priorities as new results arrive."
+             data-ar="يقترح مآل التحليل التالي لجودة المياه عندما تكون البيانات غير مكتملة، ويعيد ترتيب الأولويات مع ظهور كل نتيجة جديدة.">
+            MAAL recommends the next water-quality analysis when information is incomplete, then updates its priorities as new results arrive.
+          </p>
+
+          <div class="buttons">
+            <a class="button primary"
+               href="https://maal-water-logic.base44.app/"
+               target="_blank" rel="noopener noreferrer"
+               data-en="Explore the prototype ↗"
+               data-ar="جرّب النموذج الأولي ↗">
+              Explore the prototype ↗
+            </a>
+
+            <a class="button secondary"
+               href="./MAAL%20-%20%D9%85%D9%84%D9%81%20%D8%A7%D9%84%D9%85%D8%B4%D8%B1%D9%88%D8%B9%20%D8%A7%D9%84%D8%AF%D8%A7%D8%B9%D9%85.pdf"
+               target="_blank" rel="noopener noreferrer"
+               data-en="View supporting PDF ↗"
+               data-ar="عرض الملف الداعم ↗">
+              View supporting PDF ↗
+            </a>
+          </div>
+
+          <p class="small-note"
+             data-en="Public reference data · AI estimates are not laboratory results"
+             data-ar="بيانات مرجعية عامة · تقديرات الذكاء الاصطناعي ليست نتائج مختبرية">
+            Public reference data · AI estimates are not laboratory results
+          </p>
+        </div>
+
+        <div class="visual" aria-hidden="true">
+          <div class="glow"></div>
+          <div class="ring">
+            <div class="center">
+              <img src="Maal_logo.png" alt="">
+            </div>
+
+            <div class="chip one">
+              <small data-en="INPUT" data-ar="المدخلات">INPUT</small>
+              <strong data-en="Known data" data-ar="بيانات معروفة">Known data</strong>
+            </div>
+
+            <div class="chip two">
+              <small data-en="GAP" data-ar="الفجوة">GAP</small>
+              <strong data-en="Missing values" data-ar="قيم مفقودة">Missing values</strong>
+            </div>
+
+            <div class="chip three">
+              <small data-en="NEXT" data-ar="التالي">NEXT</small>
+              <strong data-en="Recommended test ↗"
+                      data-ar="التحليل المقترح ↗">
+                Recommended test ↗
+              </strong>
+            </div>
+
+            <i class="dot a"></i>
+            <i class="dot b"></i>
+          </div>
+        </div>
+      </section>
+
+      <section class="stats container">
+        <div class="stat">
+          <strong>2,057</strong>
+          <span data-en="public measurements"
+                data-ar="قياس من بيانات عامة">public measurements</span>
+        </div>
+        <div class="stat">
+          <strong>711</strong>
+          <span data-en="analytical cases"
+                data-ar="حالة تحليلية">analytical cases</span>
+        </div>
+        <div class="stat">
+          <strong>50 → 66.7%</strong>
+          <span data-en="example: data completeness"
+                data-ar="مثال: اكتمال البيانات">example: data completeness</span>
+        </div>
+      </section>
+
+      <section class="section container">
+        <div class="label"
+             data-en="THE INNOVATION"
+             data-ar="الابتكار">THE INNOVATION</div>
+
+        <h2 data-en="The next test changes when the evidence changes."
+            data-ar="يتغيّر التحليل التالي عندما تتغيّر الأدلة.">
+          The next test changes when the evidence changes.
+        </h2>
+
+        <div class="cards">
+          <div class="card">
+            <b>01 / DATA</b>
+            <h3 data-en="Find the gaps"
+                data-ar="تحديد الفجوات">Find the gaps</h3>
+            <p data-en="Separate measured values from missing and AI-estimated values."
+               data-ar="تمييز القيم المقاسة من القيم المفقودة والتقديرات بالذكاء الاصطناعي.">
+              Separate measured values from missing and AI-estimated values.
+            </p>
+          </div>
+
+          <div class="card">
+            <b>02 / PRIORITY</b>
+            <h3 data-en="Choose the next test"
+                data-ar="اختيار التحليل التالي">Choose the next test</h3>
+            <p data-en="Compare decision impact, uncertainty, time, and analysis cost."
+               data-ar="مقارنة أثر القرار وعدم اليقين والوقت وتكلفة التحليل.">
+              Compare decision impact, uncertainty, time, and analysis cost.
+            </p>
+          </div>
+
+          <div class="card">
+            <b>03 / ADAPT</b>
+            <h3 data-en="Update the route"
+                data-ar="تحديث المسار">Update the route</h3>
+            <p data-en="Add a new laboratory result and recalculate the recommendation."
+               data-ar="إدخال نتيجة مختبرية جديدة وإعادة حساب التوصية.">
+              Add a new laboratory result and recalculate the recommendation.
+            </p>
+          </div>
+        </div>
+
+        <p class="disclaimer"
+           data-en="MAAL is an early decision-support prototype using public reference data. It does not certify water safety or replace laboratory testing or expert judgment."
+           data-ar="مآل نموذج أولي لدعم القرار يستخدم بيانات مرجعية عامة. لا يصدر حكمًا بصلاحية المياه ولا يحل محل الفحص المخبري أو رأي المختص.">
+          MAAL is an early decision-support prototype using public reference data. It does not certify water safety or replace laboratory testing or expert judgment.
+        </p>
+      </section>
+    </main>
+
+    <footer class="container">
+      <div>
+        © 2026 MAAL ·
+        <span data-en="Reem Buraykan Alshammari"
+              data-ar="ريم بريكان الشمري">Reem Buraykan Alshammari</span>
+        · <a href="mailto:reembrykan@gmail.com">reembrykan@gmail.com</a>
+      </div>
+
+      <div class="country">
+        <img src="saudi.jpg" alt="Saudi Arabia">
+        <span data-en="A Saudi innovation concept"
+              data-ar="فكرة ابتكار سعودية">
+          A Saudi innovation concept
+        </span>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const button = document.getElementById("langButton");
+    let language = "en";
+
+    button.addEventListener("click", () => {
+      language = language === "en" ? "ar" : "en";
+
+      document.documentElement.lang = language;
+      document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
+      document.body.classList.toggle("ar", language === "ar");
+
+      document.querySelectorAll("[data-en][data-ar]").forEach(element => {
+        element.textContent = element.getAttribute("data-" + language);
+      });
+
+      button.textContent = language === "ar" ? "English ↗" : "العربية ↗";
+      document.title = language === "ar"
+        ? "مآل | التحليل التالي"
+        : "MAAL | The Next Best Test";
+    });
+  </script>
+</body>
+</html>
