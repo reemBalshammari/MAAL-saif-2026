@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#102923">
+  <meta name="description" content="MAAL recommends the next water-quality analysis when data is incomplete.">
   <title>MAAL | The Next Best Test</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,7 +15,6 @@
     :root {
       --bg: #102923;
       --deep: #0b1e1a;
-      --card: #193b32;
       --mint: #76dfc3;
       --cream: #f7f3e9;
       --muted: #b9cec3;
@@ -22,6 +22,8 @@
     }
 
     * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
@@ -35,15 +37,21 @@
       font-family: "IBM Plex Sans Arabic", "DM Sans", sans-serif;
     }
 
-    a { text-decoration: none; color: inherit; }
+    a { color: inherit; text-decoration: none; }
+
+    button:focus-visible,
+    a:focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 4px;
+    }
 
     .page {
       min-height: 100vh;
       position: relative;
       overflow: hidden;
       background:
-        radial-gradient(circle at 78% 39%, rgba(63, 172, 137, .20), transparent 34%),
-        radial-gradient(circle at 8% 85%, rgba(41, 115, 91, .18), transparent 35%),
+        radial-gradient(circle at 78% 36%, rgba(63,172,137,.20), transparent 34%),
+        radial-gradient(circle at 8% 85%, rgba(41,115,91,.18), transparent 35%),
         var(--bg);
     }
 
@@ -67,7 +75,7 @@
     }
 
     header {
-      min-height: 104px;
+      min-height: 84px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -75,24 +83,26 @@
       border-bottom: 1px solid rgba(255,255,255,.13);
     }
 
-    .brand, .header-right {
+    .brand,
+    .header-right {
       display: flex;
       align-items: center;
       gap: 15px;
     }
 
     .logo-box {
-      width: 70px;
-      height: 70px;
+      width: 61px;
+      height: 61px;
       display: grid;
       place-items: center;
-      border-radius: 17px;
+      border-radius: 15px;
       background: var(--cream);
+      box-shadow: 0 12px 30px rgba(0,0,0,.18);
     }
 
     .logo-box img {
-      width: 59px;
-      height: 59px;
+      width: 53px;
+      height: 53px;
       object-fit: contain;
     }
 
@@ -116,12 +126,12 @@
     #langButton {
       border: 1px solid rgba(118,223,195,.5);
       border-radius: 40px;
-      padding: 11px 17px;
+      padding: 10px 16px;
       color: white;
       background: rgba(118,223,195,.08);
       cursor: pointer;
       font: inherit;
-      transition: .25s;
+      transition: background .25s, transform .25s;
     }
 
     #langButton:hover {
@@ -130,12 +140,15 @@
     }
 
     .hero {
-      min-height: 630px;
       display: grid;
       grid-template-columns: 1.08fr .92fr;
-      gap: 40px;
+      gap: 35px;
       align-items: center;
-      padding: 60px 0 76px;
+      padding: 30px 0 48px;
+    }
+
+    .hero-copy {
+      min-width: 0;
     }
 
     .eyebrow {
@@ -157,106 +170,111 @@
     }
 
     h1 {
-      font-size: clamp(44px, 5.5vw, 78px);
+      font-size: clamp(42px, 4.3vw, 61px);
       font-weight: 600;
-      line-height: 1.12;
-      letter-spacing: -.055em;
-      margin: 25px 0;
+      line-height: 1.14;
+      letter-spacing: -.05em;
+      margin: 17px 0 22px;
     }
 
     .ar h1 {
       letter-spacing: 0;
-      line-height: 1.4;
-      font-size: clamp(39px, 5vw, 67px);
+      line-height: 1.32;
+      font-size: clamp(39px, 4.3vw, 59px);
     }
 
-    h1 span { color: var(--mint); }
+    h1 .highlight { color: var(--mint); }
 
-    .description {
-      color: var(--muted);
-      font-size: 18px;
-      line-height: 1.9;
-      max-width: 575px;
-      margin-bottom: 34px;
-    }
-
+    /* The two actions appear immediately after the headline */
     .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      width: min(100%, 610px);
+      gap: 14px;
     }
 
     .button {
-      min-height: 57px;
+      min-height: 70px;
       display: inline-flex;
       justify-content: center;
       align-items: center;
-      padding: 0 23px;
-      border-radius: 40px;
+      padding: 12px 18px;
+      border-radius: 18px;
+      font-size: 16px;
+      line-height: 1.4;
       font-weight: 700;
-      transition: transform .25s, box-shadow .25s, background .25s;
+      text-align: center;
+      box-shadow: 0 12px 30px rgba(0,0,0,.22);
+      transition: transform .25s, box-shadow .25s;
     }
 
-    .button:hover { transform: translateY(-4px); }
+    .button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 17px 36px rgba(0,0,0,.3);
+    }
 
     .primary {
       color: #09271f;
       background: var(--mint);
-      box-shadow: 0 12px 32px rgba(100,235,190,.18);
     }
-
-    .primary:hover { box-shadow: 0 15px 40px rgba(100,235,190,.35); }
 
     .secondary {
-      border: 1px solid rgba(235,255,242,.45);
-      background: rgba(255,255,255,.04);
+      color: var(--deep);
+      background: var(--cream);
     }
 
-    .secondary:hover { background: rgba(255,255,255,.12); }
+    .description {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.8;
+      max-width: 580px;
+      margin: 20px 0 0;
+    }
 
     .small-note {
-      margin-top: 23px;
+      margin: 12px 0 0;
       color: #a9c2b6;
       font-size: 12px;
     }
 
-    /* Animated visual: incomplete data becomes the next test */
+    /* Animated visual */
     .visual {
-      height: 480px;
+      height: 400px;
       position: relative;
       display: grid;
       place-items: center;
     }
 
     .glow {
-      width: 410px;
-      height: 410px;
+      width: 390px;
+      height: 390px;
       position: absolute;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(76,211,164,.25), transparent 65%);
+      background: radial-gradient(circle, rgba(76,211,164,.24), transparent 66%);
       filter: blur(13px);
     }
 
     .ring {
-      width: 410px;
-      height: 410px;
+      width: 355px;
+      height: 355px;
       position: relative;
       border: 1px solid rgba(158,234,201,.29);
       border-radius: 50%;
       box-shadow: inset 0 0 55px rgba(107,224,180,.05);
     }
 
-    .ring::before, .ring::after {
+    .ring::before,
+    .ring::after {
       content: "";
       position: absolute;
       border-radius: 50%;
-      inset: 48px;
+      inset: 42px;
       border: 1px dashed rgba(158,234,201,.28);
       animation: rotate 55s linear infinite;
     }
 
     .ring::after {
-      inset: 110px;
+      inset: 96px;
       border-style: solid;
       opacity: .65;
       animation-direction: reverse;
@@ -264,8 +282,8 @@
 
     .center {
       position: absolute;
-      width: 125px;
-      height: 125px;
+      width: 115px;
+      height: 115px;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
@@ -274,21 +292,22 @@
       place-items: center;
       background: #245547;
       border: 1px solid var(--mint);
-      box-shadow: 0 0 0 15px rgba(118,223,195,.06),
-                  0 0 55px rgba(118,223,195,.35);
+      box-shadow:
+        0 0 0 15px rgba(118,223,195,.06),
+        0 0 55px rgba(118,223,195,.35);
       animation: pulse 4s ease-in-out infinite;
     }
 
     .center img {
-      width: 92px;
-      height: 92px;
+      width: 84px;
+      height: 84px;
       object-fit: contain;
     }
 
     .chip {
       position: absolute;
-      min-width: 148px;
-      padding: 13px 17px;
+      min-width: 143px;
+      padding: 12px 15px;
       border: 1px solid rgba(118,223,195,.35);
       border-radius: 17px;
       background: rgba(20,55,44,.95);
@@ -303,13 +322,14 @@
       margin-bottom: 4px;
     }
 
-    .chip strong { font-size: 15px; }
+    .chip strong { font-size: 14px; }
 
-    .chip.one { top: 14%; left: -7%; }
-    .chip.two { top: 54%; left: -12%; }
+    .chip.one { top: 13%; left: -8%; }
+    .chip.two { top: 55%; left: -13%; }
+
     .chip.three {
-      right: -7%;
-      bottom: 12%;
+      right: -10%;
+      bottom: 11%;
       border-color: var(--mint);
       background: #24614e;
     }
@@ -333,17 +353,19 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 20px;
-      padding: 28px 0;
+      padding: 25px 0;
       border-top: 1px solid rgba(255,255,255,.16);
       border-bottom: 1px solid rgba(255,255,255,.16);
     }
 
-    .stat:not(:last-child) { border-inline-end: 1px solid rgba(255,255,255,.16); }
+    .stat:not(:last-child) {
+      border-inline-end: 1px solid rgba(255,255,255,.16);
+    }
 
     .stat strong {
       display: block;
       color: var(--mint);
-      font-size: 29px;
+      font-size: 27px;
     }
 
     .stat span {
@@ -351,9 +373,7 @@
       font-size: 13px;
     }
 
-    .section {
-      padding: 88px 0 62px;
-    }
+    .section { padding: 76px 0 58px; }
 
     .label {
       color: var(--mint);
@@ -363,7 +383,7 @@
     }
 
     h2 {
-      margin: 12px 0 34px;
+      margin: 12px 0 30px;
       font-size: clamp(30px, 4vw, 48px);
       font-weight: 600;
     }
@@ -380,7 +400,7 @@
       border-radius: 20px;
       border: 1px solid rgba(255,255,255,.14);
       background: linear-gradient(135deg, #224c3d, #153229);
-      transition: .3s;
+      transition: transform .3s, border-color .3s;
     }
 
     .card:hover {
@@ -396,7 +416,7 @@
       color: var(--muted);
       font-size: 13px;
       line-height: 1.8;
-      margin: 38px 0 0;
+      margin: 34px 0 0;
       max-width: 750px;
     }
 
@@ -411,7 +431,10 @@
       font-size: 13px;
     }
 
-    footer a { text-decoration: underline; text-underline-offset: 4px; }
+    footer a {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
 
     .country {
       display: flex;
@@ -425,53 +448,130 @@
       object-fit: contain;
     }
 
-    @keyframes rotate { to { transform: rotate(360deg); } }
-    @keyframes pulse {
-      50% { box-shadow: 0 0 0 25px rgba(118,223,195,.02),
-                         0 0 80px rgba(118,223,195,.4); }
+    @keyframes rotate {
+      to { transform: rotate(360deg); }
     }
-    @keyframes float { 50% { transform: translateY(-15px); } }
+
+    @keyframes pulse {
+      50% {
+        box-shadow:
+          0 0 0 25px rgba(118,223,195,.02),
+          0 0 80px rgba(118,223,195,.4);
+      }
+    }
+
+    @keyframes float {
+      50% { transform: translateY(-15px); }
+    }
 
     @media (max-width: 850px) {
-      .hero { grid-template-columns: 1fr; padding-top: 25px; }
-      .visual { order: -1; height: 375px; }
-      .ring { width: 330px; height: 330px; }
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      /* On a phone, visitors see the buttons before the visual */
+      .visual {
+        height: 335px;
+      }
+
+      .ring {
+        width: 315px;
+        height: 315px;
+      }
+
+      .buttons { width: min(100%, 610px); }
     }
 
     @media (max-width: 600px) {
-      header { min-height: 86px; }
-      .logo-box { width: 54px; height: 54px; }
-      .logo-box img { width: 46px; height: 46px; }
+      header { min-height: 78px; }
+
+      .brand,
+      .header-right { gap: 9px; }
+
+      .logo-box {
+        width: 53px;
+        height: 53px;
+      }
+
+      .logo-box img {
+        width: 45px;
+        height: 45px;
+      }
+
       .brand-sub { font-size: 10px; }
-      .saif-logo { width: 65px; }
-      #langButton { padding: 8px 10px; font-size: 12px; }
-      .hero { padding-bottom: 55px; }
-      .visual { height: 305px; }
-      .ring { width: 260px; height: 260px; }
+      .saif-logo { width: 64px; }
+
+      #langButton {
+        padding: 8px 10px;
+        font-size: 12px;
+      }
+
+      .hero { padding: 30px 0 40px; }
+
+      h1 { font-size: clamp(39px, 9vw, 48px); }
+      .ar h1 { font-size: clamp(37px, 8.5vw, 47px); }
+
+      .buttons {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .button { min-height: 61px; }
+
+      .description { font-size: 15px; }
+
+      .visual { height: 290px; }
+
+      .ring {
+        width: 260px;
+        height: 260px;
+      }
+
       .ring::before { inset: 32px; }
       .ring::after { inset: 78px; }
-      .center { width: 92px; height: 92px; }
-      .center img { width: 68px; height: 68px; }
-      .chip { min-width: 110px; padding: 8px; }
+
+      .center {
+        width: 92px;
+        height: 92px;
+      }
+
+      .center img {
+        width: 68px;
+        height: 68px;
+      }
+
+      .chip {
+        min-width: 110px;
+        padding: 8px;
+      }
+
       .chip strong { font-size: 11px; }
       .chip small { font-size: 8px; }
       .chip.one { left: -11%; }
       .chip.two { left: -15%; }
       .chip.three { right: -12%; }
-      .description { font-size: 16px; }
-      .buttons { display: grid; grid-template-columns: 1fr; }
+
       .stats { gap: 8px; }
       .stat strong { font-size: 19px; }
       .stat span { font-size: 10px; }
+
       .cards { grid-template-columns: 1fr; }
       .card { min-height: auto; }
-      footer { flex-direction: column; align-items: flex-start; }
+
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
+      *,
+      *::before,
+      *::after {
         animation: none !important;
         transition: none !important;
+        scroll-behavior: auto !important;
       }
     }
   </style>
@@ -484,6 +584,7 @@
         <div class="logo-box">
           <img src="Maal_logo.png" alt="MAAL logo">
         </div>
+
         <div>
           <div class="brand-name">MAAL</div>
           <div class="brand-sub"
@@ -496,13 +597,15 @@
 
       <div class="header-right">
         <img class="saif-logo" src="saiff%20logo.png" alt="SAIF logo">
-        <button id="langButton" type="button">العربية ↗</button>
+        <button id="langButton" type="button" aria-label="Switch language">
+          العربية ↗
+        </button>
       </div>
     </header>
 
     <main>
       <section class="hero container">
-        <div>
+        <div class="hero-copy">
           <div class="eyebrow"
                data-en="SAIF 2026 · PROOF OF CONCEPT"
                data-ar="سيف ٢٠٢٦ · نموذج أولي">
@@ -510,28 +613,23 @@
           </div>
 
           <h1>
-            <span style="color:var(--cream)"
-                  data-en="For every gap in the data,"
+            <span data-en="For every gap in the data,"
                   data-ar="لكل فجوة في البيانات…">
               For every gap in the data,
             </span>
             <br>
-            <span data-en="a next step worth taking."
+            <span class="highlight"
+                  data-en="a next step worth taking."
                   data-ar="خطوة تستحق أن تبدأ بها.">
               a next step worth taking.
             </span>
           </h1>
 
-          <p class="description"
-             data-en="MAAL recommends the next water-quality analysis when information is incomplete, then updates its priorities as new results arrive."
-             data-ar="يقترح مآل التحليل التالي لجودة المياه عندما تكون البيانات غير مكتملة، ويعيد ترتيب الأولويات مع ظهور كل نتيجة جديدة.">
-            MAAL recommends the next water-quality analysis when information is incomplete, then updates its priorities as new results arrive.
-          </p>
-
           <div class="buttons">
             <a class="button primary"
                href="https://maal-water-logic.base44.app/"
-               target="_blank" rel="noopener noreferrer"
+               target="_blank"
+               rel="noopener noreferrer"
                data-en="Explore the prototype ↗"
                data-ar="جرّب النموذج الأولي ↗">
               Explore the prototype ↗
@@ -539,12 +637,19 @@
 
             <a class="button secondary"
                href="./MAAL%20-%20%D9%85%D9%84%D9%81%20%D8%A7%D9%84%D9%85%D8%B4%D8%B1%D9%88%D8%B9%20%D8%A7%D9%84%D8%AF%D8%A7%D8%B9%D9%85.pdf"
-               target="_blank" rel="noopener noreferrer"
+               target="_blank"
+               rel="noopener noreferrer"
                data-en="View supporting PDF ↗"
                data-ar="عرض الملف الداعم ↗">
               View supporting PDF ↗
             </a>
           </div>
+
+          <p class="description"
+             data-en="MAAL recommends the next water-quality analysis when information is incomplete, then updates its priorities as new results arrive."
+             data-ar="يقترح مآل التحليل التالي لجودة المياه عندما تكون البيانات غير مكتملة، ويعيد ترتيب الأولويات مع ظهور كل نتيجة جديدة.">
+            MAAL recommends the next water-quality analysis when information is incomplete, then updates its priorities as new results arrive.
+          </p>
 
           <p class="small-note"
              data-en="Public reference data · AI estimates are not laboratory results"
@@ -555,6 +660,7 @@
 
         <div class="visual" aria-hidden="true">
           <div class="glow"></div>
+
           <div class="ring">
             <div class="center">
               <img src="Maal_logo.png" alt="">
@@ -562,12 +668,16 @@
 
             <div class="chip one">
               <small data-en="INPUT" data-ar="المدخلات">INPUT</small>
-              <strong data-en="Known data" data-ar="بيانات معروفة">Known data</strong>
+              <strong data-en="Known data" data-ar="بيانات معروفة">
+                Known data
+              </strong>
             </div>
 
             <div class="chip two">
               <small data-en="GAP" data-ar="الفجوة">GAP</small>
-              <strong data-en="Missing values" data-ar="قيم مفقودة">Missing values</strong>
+              <strong data-en="Missing values" data-ar="قيم مفقودة">
+                Missing values
+              </strong>
             </div>
 
             <div class="chip three">
@@ -588,24 +698,34 @@
         <div class="stat">
           <strong>2,057</strong>
           <span data-en="public measurements"
-                data-ar="قياس من بيانات عامة">public measurements</span>
+                data-ar="قياس من بيانات عامة">
+            public measurements
+          </span>
         </div>
+
         <div class="stat">
           <strong>711</strong>
           <span data-en="analytical cases"
-                data-ar="حالة تحليلية">analytical cases</span>
+                data-ar="حالة تحليلية">
+            analytical cases
+          </span>
         </div>
+
         <div class="stat">
           <strong>50 → 66.7%</strong>
           <span data-en="example: data completeness"
-                data-ar="مثال: اكتمال البيانات">example: data completeness</span>
+                data-ar="مثال: اكتمال البيانات">
+            example: data completeness
+          </span>
         </div>
       </section>
 
       <section class="section container">
         <div class="label"
              data-en="THE INNOVATION"
-             data-ar="الابتكار">THE INNOVATION</div>
+             data-ar="الابتكار">
+          THE INNOVATION
+        </div>
 
         <h2 data-en="The next test changes when the evidence changes."
             data-ar="يتغيّر التحليل التالي عندما تتغيّر الأدلة.">
@@ -656,7 +776,9 @@
       <div>
         © 2026 MAAL ·
         <span data-en="Reem Buraykan Alshammari"
-              data-ar="ريم بريكان الشمري">Reem Buraykan Alshammari</span>
+              data-ar="ريم بريكان الشمري">
+          Reem Buraykan Alshammari
+        </span>
         · <a href="mailto:reembrykan@gmail.com">reembrykan@gmail.com</a>
       </div>
 
@@ -671,10 +793,10 @@
   </div>
 
   <script>
-    const button = document.getElementById("langButton");
+    const langButton = document.getElementById("langButton");
     let language = "en";
 
-    button.addEventListener("click", () => {
+    langButton.addEventListener("click", () => {
       language = language === "en" ? "ar" : "en";
 
       document.documentElement.lang = language;
@@ -685,10 +807,13 @@
         element.textContent = element.getAttribute("data-" + language);
       });
 
-      button.textContent = language === "ar" ? "English ↗" : "العربية ↗";
-      document.title = language === "ar"
-        ? "مآل | التحليل التالي"
-        : "MAAL | The Next Best Test";
+      langButton.textContent =
+        language === "ar" ? "English ↗" : "العربية ↗";
+
+      document.title =
+        language === "ar"
+          ? "مآل | التحليل التالي"
+          : "MAAL | The Next Best Test";
     });
   </script>
 </body>
